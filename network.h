@@ -28,6 +28,5 @@ typedef struct{ //Network
 
 void randomize_weights(NETWORK* net);
 void initialize_network(NETWORK* net);
-void initialize_random();
 
 #endif //C_IMPLEMENTATION_NETWORK_H

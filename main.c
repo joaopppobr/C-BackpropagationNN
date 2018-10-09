@@ -2,16 +2,19 @@
 #include <stdlib.h>
 #include <math.h>
 #include "network.h"
-void main() {
-    NETWORK Net;
-    int i,j,k;
-    initialize_random();
+void main()
+{
+    srand(4711);
+    int l,i,j;
+    NETWORK  Net;
     initialize_network(&Net);
     randomize_weights(&Net);
-    for(i=1; i<NUM_LAYERS; i++) {
-        for (j = 1; j <= Net.layer[i]->units; j++) {
-            for (k = 0; k <= Net.layer[i - 1]->units; k++)
-                printf("%f\n", Net.layer[i]->weight[j][k]);
+
+    for (l=1; l<NUM_LAYERS; l++) {
+        for (i=1; i<=Net.layer[l]->units; i++) {
+            for (j=0; j<=Net.layer[l-1]->units; j++) {
+                printf("%f\n",Net.layer[l]->weight[i][j]);
+            }
         }
     }
 }

@@ -28,11 +28,11 @@ void initialize_network(NETWORK* net){
         net->layer[i]->delta = (double**) calloc(Units[i]+1, sizeof(double*));
         net->layer[i]->output[0] = BIAS;
 
-        if(i!=0){
-            for(j=1; j<Units[i]; j++) {
-                net->layer[i]->weight[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
-                net->layer[i]->saved_weights[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
-                net->layer[i]->delta[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
+        if (i != 0) {
+            for (j=1; j<=Units[i]; j++) {
+                net->layer[i]->weight[j]     = (double*) calloc(Units[i-1]+1, sizeof(double));
+                net->layer[i]->saved_weights[j] = (double*) calloc(Units[i-1]+1, sizeof(double));
+                net->layer[i]->delta[j]    = (double*) calloc(Units[i-1]+1, sizeof(double));
             }
         }
     }
@@ -55,9 +55,6 @@ void randomize_weights(NETWORK* net){
         }
     }
 
-void initialize_random(){
-    srand(4711);
-}
 /*
 double* activate(NETWORK* net){
     size_t len_weights = sizeof(net->layer->weight) / sizeof(int);
