@@ -3,7 +3,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-int Units[NUM_LAYERS] = {20, 10, 10, 5}; //INPUTS, HIDDEN, OUTPUTS
+int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN, OUTPUTS
+
+
+double RandomEqualREAL(double Low, double High)
+{
+    return ((double) rand() / RAND_MAX) * (High-Low) + Low;
+}
 
 void initialize_network(NETWORK* net){
     int i,j;
@@ -23,7 +29,7 @@ void initialize_network(NETWORK* net){
         net->layer[i]->output[0] = BIAS;
 
         if(i!=0){
-            for(j=1; j<Units[1]; j++) {
+            for(j=1; j<Units[i]; j++) {
                 net->layer[i]->weight[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
                 net->layer[i]->saved_weights[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
                 net->layer[i]->delta[j] = (double *) calloc(Units[i-1] + 1, sizeof(double));
@@ -38,17 +44,20 @@ void initialize_network(NETWORK* net){
 }
 
 void randomize_weights(NETWORK* net){
-    int i,j,k;
+    int l,i,j;
 
-    for(i=1; i<NUM_LAYERS; i++){
-        for(j=1; j<=net->layer[i]->units; j++){
-            for(k=0; k<=net->layer[i-1]->units; k++){
-                net->layer[i]->weight[j][k]= ((double) rand() / RAND_MAX) * (0.5-0.5)+0.5;
+    for (l=1; l<NUM_LAYERS; l++) {
+        for (i=1; i<=net->layer[l]->units; i++) {
+            for (j=0; j<=net->layer[l-1]->units; j++) {
+                net->layer[l]->weight[i][j] = RandomEqualREAL(-0.5, 0.5);
+                }
             }
         }
     }
-}
 
+void initialize_random(){
+    srand(4711);
+}
 /*
 double* activate(NETWORK* net){
     size_t len_weights = sizeof(net->layer->weight) / sizeof(int);

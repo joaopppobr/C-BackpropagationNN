@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include <math.h>
 #include "network.h"
-int main() {
-    printf("teste");
-    NETWORK *Net;
-    int i;
-    initialize_network(Net);
-    randomize_weights(Net);
-    printf("teste");
-   // for(i=0; i<NUM_LAYERS; i++){
-   //     printf("teste %f", Net->layer[i]->weight);
-   // }
-    return 0;
+void main() {
+    NETWORK Net;
+    int i,j,k;
+    initialize_random();
+    initialize_network(&Net);
+    randomize_weights(&Net);
+    for(i=1; i<NUM_LAYERS; i++) {
+        for (j = 1; j <= Net.layer[i]->units; j++) {
+            for (k = 0; k <= Net.layer[i - 1]->units; k++)
+                printf("%f\n", Net.layer[i]->weight[j][k]);
+        }
+    }
 }
