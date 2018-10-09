@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/joaopedro/Github/Backpropagation/C_implementation/main.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+network.h
+/home/joaopedro/Github/Backpropagation/C_implementation/network.h
+
+/home/joaopedro/Github/Backpropagation/C_implementation/network.c
+network.h
+/home/joaopedro/Github/Backpropagation/C_implementation/network.h
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+
+/home/joaopedro/Github/Backpropagation/C_implementation/network.h
+
