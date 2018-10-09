@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Joaopedro/GitHub/untitled/main.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+network.h
+/Users/Joaopedro/GitHub/untitled/network.h
+
+/Users/Joaopedro/GitHub/untitled/network.h
+

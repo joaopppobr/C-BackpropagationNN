@@ -1,17 +1,9 @@
-//
-// Created by joaopedro on 09/10/18.
-//
 #include "network.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-#define min(x,y)    ((x)<(y)?(x):(y))
-#define max(x,y)    ((x)>(y)?(x):(y))
-#define srq(x)      ((x)*(x))
-#define LO  0.1
-#define HI  0.9
-#define BIAS    1
+int Units[NUM_LAYERS] = {20, 10, 10, 5}; //INPUTS, HIDDEN, OUTPUTS
 
 void initialize_network(NETWORK* net){
     int i,j;

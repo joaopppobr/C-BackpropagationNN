@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/joaopedro/Github/Backpropagation/C_implementation
+CMAKE_SOURCE_DIR = /Users/Joaopedro/GitHub/untitled
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/Joaopedro/GitHub/untitled/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/joaopedro/Github/Backpropagation/C_implementation/cmake
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles /Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named C_implementation
+# Target rules for targets named untitled
 
 # Build rule for target.
-C_implementation: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 C_implementation
-.PHONY : C_implementation
+untitled: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 untitled
+.PHONY : untitled
 
 # fast build rule for target.
-C_implementation/fast:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/build
-.PHONY : C_implementation/fast
+untitled/fast:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
+.PHONY : untitled/fast
 
 main.o: main.c.o
 
@@ -129,7 +129,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/main.c.o
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -138,7 +138,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/main.c.i
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -147,7 +147,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/main.c.s
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.s
 .PHONY : main.c.s
 
 network.o: network.c.o
@@ -156,7 +156,7 @@ network.o: network.c.o
 
 # target to build an object file
 network.c.o:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/network.c.o
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/network.c.o
 .PHONY : network.c.o
 
 network.i: network.c.i
@@ -165,7 +165,7 @@ network.i: network.c.i
 
 # target to preprocess a source file
 network.c.i:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/network.c.i
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/network.c.i
 .PHONY : network.c.i
 
 network.s: network.c.s
@@ -174,7 +174,7 @@ network.s: network.c.s
 
 # target to generate assembly for a file
 network.c.s:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/network.c.s
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/network.c.s
 .PHONY : network.c.s
 
 # Help Target
@@ -185,7 +185,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... C_implementation"
+	@echo "... untitled"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
