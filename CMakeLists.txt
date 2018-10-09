@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
-project(C_implementation C)
+project(untitled C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C_implementation main.c network.h network.c)
+add_executable(untitled main.c network.c network.h)

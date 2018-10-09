@@ -50,54 +50,54 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/joaopedro/Github/Backpropagation/C_implementation
+CMAKE_SOURCE_DIR = /Users/Joaopedro/GitHub/untitled
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/Joaopedro/GitHub/untitled/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/C_implementation.dir
+# Target rules for target CMakeFiles/untitled.dir
 
 # All Build rule for target.
-CMakeFiles/C_implementation.dir/all:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/depend
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target C_implementation"
-.PHONY : CMakeFiles/C_implementation.dir/all
+CMakeFiles/untitled.dir/all:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/depend
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target untitled"
+.PHONY : CMakeFiles/untitled.dir/all
 
 # Include target in all.
-all: CMakeFiles/C_implementation.dir/all
+all: CMakeFiles/untitled.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/C_implementation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/C_implementation.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/C_implementation.dir/rule
+CMakeFiles/untitled.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/untitled.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/untitled.dir/rule
 
 # Convenience name for target.
-C_implementation: CMakeFiles/C_implementation.dir/rule
+untitled: CMakeFiles/untitled.dir/rule
 
-.PHONY : C_implementation
-
-# clean rule for target.
-CMakeFiles/C_implementation.dir/clean:
-	$(MAKE) -f CMakeFiles/C_implementation.dir/build.make CMakeFiles/C_implementation.dir/clean
-.PHONY : CMakeFiles/C_implementation.dir/clean
+.PHONY : untitled
 
 # clean rule for target.
-clean: CMakeFiles/C_implementation.dir/clean
+CMakeFiles/untitled.dir/clean:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/clean
+.PHONY : CMakeFiles/untitled.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/untitled.dir/clean
 
 .PHONY : clean
 

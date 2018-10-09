@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/joaopedro/Github/Backpropagation/C_implementation/main.c" "/home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles/C_implementation.dir/main.c.o"
-  "/home/joaopedro/Github/Backpropagation/C_implementation/network.c" "/home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug/CMakeFiles/C_implementation.dir/network.c.o"
+  "/Users/Joaopedro/GitHub/untitled/main.c" "/Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles/untitled.dir/main.c.o"
+  "/Users/Joaopedro/GitHub/untitled/network.c" "/Users/Joaopedro/GitHub/untitled/cmake-build-debug/CMakeFiles/untitled.dir/network.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

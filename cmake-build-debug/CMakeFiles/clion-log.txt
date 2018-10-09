@@ -1,4 +1,4 @@
-/home/joaopedro/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/joaopedro/Github/Backpropagation/C_implementation
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/Joaopedro/GitHub/untitled
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/joaopedro/Github/Backpropagation/C_implementation/cmake-build-debug
+-- Build files have been written to: /Users/Joaopedro/GitHub/untitled/cmake-build-debug
