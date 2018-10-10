@@ -6,7 +6,7 @@
 int main()
 {
     srand((time NULL));
-    int l,i,j;
+    int l,i,j,k;
     NETWORK  Net;
     initialize_network(&Net);
     randomize_weights(&Net);
@@ -23,8 +23,11 @@ int main()
     */
 
     //This should be a test to see if the activation function
-    //works properly.
-    printf("%f", activate(&Net));
+    //works properly.]
+    forward_propagate(&Net);
+    for (k = 1; k <= 1; k++)
+        printf("%f", Net.layer[2]->output[k]);
+
 
     return 0;
 }

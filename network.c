@@ -67,21 +67,25 @@ void randomize_weights(NETWORK* net){
    This would then work for any two layers of the network, and we could
    simply do a "for" to propagate the entire network.*/
 
-double activate(NETWORK* net){
+double forward_propagate(NETWORK* net){
     int i, l, j, k;
+    double sumH[Units[1]], SumO[Units[2]];
 
-    double activation = 0.00;
-
-    for (l=1; l<NUM_LAYERS; l++) {
-        for (i=1; i<=net->layer[l]->units; i++) {
-            for (j=0; j<=net->layer[l-1]->units; j++) {
-                for (k=0; k<=Units[0]-1; k++) {
-                    activation += net->layer[l]->weight[i][j] * net->input_layer->output[k];
-                }
+        for (j = 1; j <= Units[1]; j++) {         //Hidden Layer Activation
+            sumH[j] = net->layer[1]->weight[0][j];
+            for (i = 1; i <= Units[0]; i++) {
+                sumH[j] += net->input_layer->output[i] * net->layer[1]->weight[i][j];
             }
+            net->layer[1]->output[j] = 1.0 / (1.0 + exp(-sumH[j]));
         }
-    }
-    return activation;
+
+        for (k = 1; k <= Units[NUM_LAYERS-1]; k++) {         /* k loop computes output unit activations */
+            SumO[k] = net->layer[2]->weight[0][k];
+            for (j = 1; j <= NUM_LAYERS-2; j++) {
+                SumO[k] += net->layer[1]->output[j] * net->layer[1]->weight[j][k];
+            }
+            net->layer[2]->output[k] = 1.0 / (1.0 + exp(-SumO[k]));
+        }
 }
 
 double sigmoid_transfer(double activation){

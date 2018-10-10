@@ -28,7 +28,7 @@ typedef struct{ //Network
 
 void randomize_weights(NETWORK* net);
 void initialize_network(NETWORK* net);
-double activate(NETWORK* net);
+double forward_propagate(NETWORK* net);
 double sigmoid_transfer(double activation);
 
 #endif //C_IMPLEMENTATION_NETWORK_H
