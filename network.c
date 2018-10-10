@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-//This is a arbitrary definition for the sake of testing only. In the real application
-//this should note be included
+//This is an arbitrary definition for the sake of testing only. In the real application
+//this should not be included
 int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN LAYERS, OUTPUTS
 
 
