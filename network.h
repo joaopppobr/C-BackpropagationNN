@@ -21,7 +21,7 @@ typedef struct{ //Network
     LAYER** layer;
     LAYER*   input_layer;
     LAYER* output_layer;
-    double l_rate;
+    double l_rate; // Learning Rate
     double error;
 
 } NETWORK;
@@ -29,5 +29,6 @@ typedef struct{ //Network
 void randomize_weights(NETWORK* net);
 void initialize_network(NETWORK* net);
 double activate(NETWORK* net);
+double sigmoid_transfer(double activation);
 
 #endif //C_IMPLEMENTATION_NETWORK_H

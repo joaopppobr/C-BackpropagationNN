@@ -58,6 +58,14 @@ void randomize_weights(NETWORK* net){
         }
     }
 
+/* I think there's a better way to write this function
+   Idea: Do this with an upper layer and a lower layer, so you
+   can propagate trough the entire network more easily.
+
+   Example: PropagateLayer(NETWORK* Net, LAYER* Lower, LAYER* Upper)
+
+   This would then work for any two layers of the network, and we could
+   simply do a "for" to propagate the entire network.*/
 
 double activate(NETWORK* net){
     int i, l, j, k;
@@ -76,8 +84,23 @@ double activate(NETWORK* net){
     return activation;
 }
 
+double sigmoid_transfer(double activation){
+    return 1.0/(1.0 + exp(-activation));
+}
 
-
+/* I dont know yet how to write this function
+ *
+ *
+ *
+void forward_propagate(NETWORK* net){
+    int i, j;
+    for (i=0; i<=NUM_LAYERS; i++) {
+        for(j=0; j<=Units[i]; j++){
+            activation = activate()
+        }
+    }
+}
+*/
 
 
 

@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include "network.h"
-void main()
+int main()
 {
-    srand(4711);
+    srand((time NULL));
     int l,i,j;
     NETWORK  Net;
     initialize_network(&Net);
     randomize_weights(&Net);
 
+    //This tests if the weights are being assigned correctly.
     /*
     for (l=1; l<NUM_LAYERS; l++) {
         for (i=1; i<=Net.layer[l]->units; i++) {
@@ -20,5 +22,9 @@ void main()
     }
     */
 
+    //This should be a test to see if the activation function
+    //works properly.
     printf("%f", activate(&Net));
+
+    return 0;
 }
