@@ -3,9 +3,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN, OUTPUTS
+//This is a arbitrary definition for the sake of testing only. In the real application
+//this should note be included
+int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN LAYERS, OUTPUTS
 
 
+//Random number generator that generates a double.
 double RandomEqualREAL(double Low, double High)
 {
     return ((double) rand() / RAND_MAX) * (High-Low) + Low;
@@ -55,17 +58,27 @@ void randomize_weights(NETWORK* net){
         }
     }
 
-/*
-double* activate(NETWORK* net){
-    size_t len_weights = sizeof(net->layer->weight) / sizeof(int);
-    int i;
-    double* activation = weights[-1];
-    for(i=0; i<len_weights-1; i++){
-        activation += weights[i]*inputs[i];
+
+double activate(NETWORK* net){
+    int i, l, j, k;
+
+    double activation = 0.00;
+
+    for (l=1; l<NUM_LAYERS; l++) {
+        for (i=1; i<=net->layer[l]->units; i++) {
+            for (j=0; j<=net->layer[l-1]->units; j++) {
+                for (k=0; k<=Units[0]-1; k++) {
+                    activation += net->layer[l]->weight[i][j] * net->input_layer->output[k];
+                }
+            }
+        }
     }
     return activation;
 }
- */
+
+
+
+
 
 
 
