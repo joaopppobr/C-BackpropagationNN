@@ -2,11 +2,10 @@
 #define C_IMPLEMENTATION_NETWORK_H
 
 #define BIAS    1
-
 /*These definitions below are specific
 to each application, but are here as placeholders*/
 #define NUM_LAYERS  3
-#define LEARNING_RATE 0.25
+#define DAYS 30
 
 typedef struct{ //Layer of network;
     int units;
@@ -37,6 +36,7 @@ double calculate_error(NETWORK* net, double* target);
 void calculate_delta(NETWORK* net, double* target);
 void backpropagate(NETWORK* net);
 void update_weights(NETWORK* net);
-void simulate_network(NETWORK* net, double* input, double* output, double* target, int status);
+void run_network(NETWORK* net, double* input, double* output, double* target, int status);
+void set_definitions(NETWORK* net, double* input);
 
 #endif //C_IMPLEMENTATION_NETWORK_H

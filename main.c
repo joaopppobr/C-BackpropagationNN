@@ -1,18 +1,30 @@
+
+/*                    The code below is an implementation of a backpropagation
+             neural network in C. Read the comments carefully before executing the code.
+                                                                                                */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include "network.h"
+
+//-----------      SET DEFINITION FOR THE NUMBER OF UNITS IN THE LAYERS      -----------//
+//------     ITS IMPORTANT THAT THESE DEFINITIONS ARE THE SAME AS IN 'network.c' -------//
+
+int units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN LAYERS, OUTPUTS
+
 int main()
 {
+    //This tests if the weights are being assigned correctly.
+    /*
+
     srand((time NULL));
     int l,i,j,k;
     NETWORK  Net;
     initialize_network(&Net);
     randomize_weights(&Net);
 
-    //This tests if the weights are being assigned correctly.
-    /*
     for (l=1; l<NUM_LAYERS; l++) {
         for (i=1; i<=Net.layer[l]->units; i++) {
             for (j=0; j<=Net.layer[l-1]->units; j++) {
@@ -42,6 +54,15 @@ int main()
         printf("Hidden: %f\n", Net.layer[1]->output[k]);
 
         */
+
+    srand((time NULL));
+    int l,i,j,k;
+    double input[units[0]];
+    NETWORK  Net;
+
+    set_definitions(&Net, input);
+    initialize_network(&Net);
+    randomize_weights(&Net);
 
 
     return 0;

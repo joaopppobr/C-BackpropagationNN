@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-//This is an arbitrary definition for the sake of testing only.
+//-----------      SET DEFINITION FOR THE NUMBER OF UNITS IN THE LAYERS      -----------//
 int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN LAYERS, OUTPUTS
 
 
@@ -43,7 +43,6 @@ void initialize_network(NETWORK* net){
 
     net->input_layer = net->layer[0];
     net->output_layer = net->layer[NUM_LAYERS-1];
-    net->l_rate = LEARNING_RATE;
 
 }
 
@@ -131,7 +130,7 @@ void calculate_delta(NETWORK* net, double* target){
 // The function below backpropagates the entire network.
 void backpropagate(NETWORK* net){
     int i,j, p;
-
+    
     double sumD[Units[1]];
         for (i = 1; i < net->layer[1]->units; i++) {
             sumD[i] = 0.00;
@@ -157,7 +156,7 @@ void update_weights(NETWORK* net){
     }
 }
 
-void simulate_network(NETWORK* net, double* input, double* output, double* target, int status){
+void run_network(NETWORK* net, double* input, double* output, double* target, int status){
     insert_input(net, input);
     forward_propagate(net);
     get_output(net, output);
@@ -169,3 +168,19 @@ void simulate_network(NETWORK* net, double* input, double* output, double* targe
     }
 }
 
+void train_network(NETWORK* net, int epochs){
+
+}
+
+void set_definitions(NETWORK* net, double* input){
+
+    //-----------      SET DEFINITIONS FOR THE NETWORK      -----------//
+
+            net->alpha = 0.5;
+            net->l_rate = 0.25;
+
+    //-----------      SET DEFINITIONS FOR THE INPUT    -----------//
+
+    double MARKET_YIELDS[DAYS] = {3.41,3.42,3.42,3.42,3.40,3.40,3.39,3.40,3.39,3.40,3.41,3.40,3.40,3.40,3.40,3.41,3.41,3.41,3.42,3.42,3.43,3.45,3.46,3.45,3.44,3.45,3.44,3.43,3.43,3.43};
+    input = MARKET_YIELDS;
+}
