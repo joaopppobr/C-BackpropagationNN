@@ -15,6 +15,7 @@ typedef struct{ //Layer of network;
     double** weight;
     double** saved_weights;
     double** delta;
+    double** dweight;
 } LAYER;
 
 typedef struct{ //Network
@@ -23,12 +24,19 @@ typedef struct{ //Network
     LAYER* output_layer;
     double l_rate; // Learning Rate
     double error;
+    double alpha;
 
 } NETWORK;
 
 void randomize_weights(NETWORK* net);
 void initialize_network(NETWORK* net);
-double forward_propagate(NETWORK* net);
+void forward_propagate(NETWORK* net);
 double sigmoid_transfer(double activation);
+void insert_input(NETWORK* net, double* input);
+double calculate_error(NETWORK* net, double* target);
+void calculate_delta(NETWORK* net, double* target);
+void backpropagate(NETWORK* net);
+void update_weights(NETWORK* net);
+void simulate_network(NETWORK* net, double* input, double* output, double* target, int status);
 
 #endif //C_IMPLEMENTATION_NETWORK_H

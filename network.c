@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-//This is an arbitrary definition for the sake of testing only. In the real application
-//this should not be included
+//This is an arbitrary definition for the sake of testing only.
 int Units[NUM_LAYERS] = {30, 10, 1}; //INPUTS, HIDDEN LAYERS, OUTPUTS
 
 
@@ -29,6 +28,7 @@ void initialize_network(NETWORK* net){
         net->layer[i]->weight = (double**) calloc(Units[i]+1, sizeof(double*));
         net->layer[i]->saved_weights = (double**) calloc(Units[i]+1, sizeof(double*));
         net->layer[i]->delta = (double**) calloc(Units[i]+1, sizeof(double*));
+        net->layer[i]->dweight    = (double**) calloc(Units[i]+1, sizeof(double*));
         net->layer[i]->output[0] = BIAS;
 
         if (i != 0) {
@@ -36,6 +36,7 @@ void initialize_network(NETWORK* net){
                 net->layer[i]->weight[j]     = (double*) calloc(Units[i-1]+1, sizeof(double));
                 net->layer[i]->saved_weights[j] = (double*) calloc(Units[i-1]+1, sizeof(double));
                 net->layer[i]->delta[j]    = (double*) calloc(Units[i-1]+1, sizeof(double));
+                net->layer[i]->dweight[i]    = (double*) calloc(Units[i-1]+1, sizeof(double));
             }
         }
     }
@@ -58,54 +59,113 @@ void randomize_weights(NETWORK* net){
         }
     }
 
-/* I think there's a better way to write this function
-   Idea: Do this with an upper layer and a lower layer, so you
-   can propagate trough the entire network more easily.
 
-   Example: PropagateLayer(NETWORK* Net, LAYER* Lower, LAYER* Upper)
+/* The function below forward propagates the activations for the whole
+   network.*/
 
-   This would then work for any two layers of the network, and we could
-   simply do a "for" to propagate the entire network.*/
-
-double forward_propagate(NETWORK* net){
+//This function works only for networks with 1 hidden layer.
+//Soon there will be the implementation for any number of hidden layers.
+void forward_propagate(NETWORK* net){
     int i, l, j, k;
+    net->error = 0.00;
+
     double sumH[Units[1]], SumO[Units[2]];
 
-        for (j = 1; j <= Units[1]; j++) {         //Hidden Layer Activation
-            sumH[j] = net->layer[1]->weight[0][j];
-            for (i = 1; i <= Units[0]; i++) {
+        for (j = 1; j <= net->layer[1]->units; j++) {         //Hidden Layer Activation
+            sumH[j] = net->layer[1]->weight[1][j];
+            for (i = 1; i <= net->layer[1]->units; i++) {
                 sumH[j] += net->input_layer->output[i] * net->layer[1]->weight[i][j];
             }
-            net->layer[1]->output[j] = 1.0 / (1.0 + exp(-sumH[j]));
+            net->layer[1]->output[j] = sigmoid_transfer(sumH[j]);
         }
 
-        for (k = 1; k <= Units[NUM_LAYERS-1]; k++) {         /* k loop computes output unit activations */
-            SumO[k] = net->layer[2]->weight[0][k];
-            for (j = 1; j <= NUM_LAYERS-2; j++) {
-                SumO[k] += net->layer[1]->output[j] * net->layer[1]->weight[j][k];
+        for (k = 1; k <= net->layer[1]->units; k++) {         // Output layer activation
+            SumO[k] = net->output_layer->weight[1][k];
+            for (j = 1; j <= net->output_layer->units; j++) {
+                SumO[k] += net->layer[1]->output[j] * net->output_layer->weight[j][k];
             }
-            net->layer[2]->output[k] = 1.0 / (1.0 + exp(-SumO[k]));
+            net->output_layer->output[k] = sigmoid_transfer(SumO[k]);
         }
 }
 
+// This function does what it says: a sigmoid transfer.
 double sigmoid_transfer(double activation){
     return 1.0/(1.0 + exp(-activation));
 }
 
-/* I dont know yet how to write this function
- *
- *
- *
-void forward_propagate(NETWORK* net){
-    int i, j;
-    for (i=0; i<=NUM_LAYERS; i++) {
-        for(j=0; j<=Units[i]; j++){
-            activation = activate()
+//This function lets you insert values to the input layer.
+void insert_input(NETWORK* net, double* input){
+    int i;
+
+    for(i=1; i<net->input_layer->units; i++){
+        net->input_layer->output[i] = input[i-1];
+    }
+}
+
+void get_output(NETWORK* net, double* output){
+    int i;
+
+    for(i=1; i<net->output_layer->units; i++){
+        output[i-1] = net->output_layer->output[i];
+    }
+}
+
+double calculate_error(NETWORK* net, double* target){
+    int i;
+    double error = 0.00;
+    for(i=0; i<net->output_layer->units; i++){
+        error = target[i-1] - net->output_layer->output[i];
+        net->error = 0.5 * (error * error);
+    }
+
+}
+
+// The function below calculates the deltas for the output layer
+void calculate_delta(NETWORK* net, double* target){
+    int i;
+    for(i=0; i<net->output_layer->units; i++){
+        *net->output_layer->delta[i] = (target[i-1] - net->output_layer->output[i] * net->output_layer->output[i] * (1.0 - net->output_layer->output[i]));
+    }
+}
+
+// The function below backpropagates the entire network.
+void backpropagate(NETWORK* net){
+    int i,j, p;
+
+    double sumD[Units[1]];
+        for (i = 1; i < net->layer[1]->units; i++) {
+            sumD[i] = 0.00;
+            for (j = 0; j < net->output_layer->units; j++) {
+                sumD[i] = net->output_layer->weight[i][j] * *net->output_layer->delta[j];
+            }
+            *net->layer[1]->delta[j] = sumD[i] * net->layer[1]->output[i] * (1.0 - net->layer[1]->output[i]);
+        }
+}
+
+// The function below updates the weights for the entire network after the backpropagation.
+void update_weights(NETWORK* net){
+    int i,j,k;
+    int dweight;
+
+    for(i=1; i<NUM_LAYERS; i++){
+        for(j=1; j<net->layer[i]->units; j++) {
+            for (k = 0; k < net->layer[i - 1]->units; k++) {
+                net->layer[i]->weight[j][k] += net->l_rate * net->layer[i]->error[j] * net->layer[i-1]->output[k] + net->alpha * net->layer[i]->dweight[j][k];
+                net->layer[i]->dweight[j][k] = net->l_rate * net->layer[i]->error[j] * net->layer[i-1]->output[k];
+            }
         }
     }
 }
-*/
 
+void simulate_network(NETWORK* net, double* input, double* output, double* target, int status){
+    insert_input(net, input);
+    forward_propagate(net);
+    get_output(net, output);
+    calculate_error(net, target);
 
-
+    if(status){ //If 1, the network is set to training
+        backpropagate(net);
+        update_weights(net);
+    }
+}
 
